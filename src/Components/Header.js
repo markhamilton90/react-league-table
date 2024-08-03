@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Simulator from './Simulator';
 
-function Header() {
+function Header({handleClick}) {
     return (
         <header>
             <h1>League Table</h1>
-            <Simulator />
+            <Simulator handleClick={handleClick}/>
         </header>
     )
 }

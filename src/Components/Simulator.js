@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
-function Simulator() {
+function Simulator({handleClick}) {
     return (
-        <button>Run Simulation</button>
+        <button onClick={handleClick}>
+            Run Simulation
+        </button>
     )
 }
 

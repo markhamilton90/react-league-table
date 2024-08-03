@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function Position({ position }) {
     return (
-        <td class="position">
+        <td className="position">
             <span className="current">{position}</span>
             <span className="previous" style={{display:'none'}}>
                 <span className="tooltip">

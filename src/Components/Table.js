@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Row from './Row';
 
-function Table({ teams }) {
+function Table({ teams, matchWeek }) {
     return (
         <table>
             <thead>
                 <tr>
-                    <th class="position">Position</th>
-                    <th class="club">Club</th>
+                    <th className="position">Position</th>
+                    <th className="club">Club</th>
                     <th>Played</th>
                     <th>Won</th>
                     <th>Drawn</th>
@@ -22,7 +22,11 @@ function Table({ teams }) {
             <tbody>
                 {
                     teams.map((team, index) => (
-                        <Row team={team} index={index}/>
+                        <Row
+                            team={team}
+                            index={index}
+                            matchWeek={matchWeek}
+                        />
                     ))
                 }
             </tbody>

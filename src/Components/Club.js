@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function Club({ name }) {
     return (
-        <td class="club">{name}</td>
+        <td className="club">{name}</td>
     )
 }
 
