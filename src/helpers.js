@@ -1,82 +1,55 @@
-// export function getRandomUniqueNumbers(amount, range) {
-//     let numbers = []
-//     for (let i = 0; i < amount;) {
-//         let value = Math.ceil(Math.random() * range);
-//         if (numbers.includes(value)) {
-//             continue
-//         } else {
-//             numbers.push(value)
-//             i++
-//         }
-//     }
-//     return numbers
-// }
 
 export function randomize(range) {
     return Math.floor(Math.random() * range)
 }
 
-function reverse(str) {
-    return str.split('-').reverse().join('-')
-}
+/*
+This requires an even number of teams in order
+to reliably and predictably generate all matchups.
 
-export function selectMatchups(matchups) {
+Uses the cyclical method for drawing fixtures.
+The number 1 is fixed in place and the other numbers
+are rotated clockwise
 
-}
+**------------**
+|  6        1  |
+|  5   ↳    2  |
+|  4   ←    3  |
+**------------**
+*/
+export function createSchedule(clubs) {
+    let weeks = clubs.length - 1
+    let matchesPerWeek = clubs.length / 2
 
-export function setWeeklyMatchups(matchups, teams) {
+    let left = clubs.slice(0, matchesPerWeek);
+    let right = clubs.slice(matchesPerWeek, clubs.length).reverse();
 
-    const totalWeeks = teams - 1
-    const matchesPerWeek = teams / 2
-    let matchweeks = []
+    let schedule = Array(weeks).fill([])
 
-    for (let i = 0; i < totalWeeks; i++) {
-        matchweeks.push([])
-        for (let j = 0; j < matchesPerWeek;) {
-            let randomIndex = randomize(matchups.length)
-            let randomMatchup = matchups[randomIndex]
+    for (let i = 0; i < weeks; i++) {
 
-            let currentEntries = matchweeks[i].join('-')?.split('-')
-            let [teamA, teamB] = randomMatchup.split('-')
+    // cyclical method to get every permutation
+    // 1, 2, 3  |  6, 5, 4
+    // ====================
+    // remove first element from right array,
+    // and place it right after the first index in the left array
+    let toLeft = right.shift();
+    left.splice(1, 0, toLeft);
+    // remove last element from left array,
+    // and append it to the right array
+    let toRight = left.pop();
+    right.push(toRight);
+    // this is one rotation
+    //
+    // the first element in left array remains fixed
 
-            if (currentEntries.includes(teamA) || currentEntries.includes(teamB)) {
-                continue
-            } else {
-                matchweeks[i].push(randomMatchup)
-                matchups.splice(randomIndex, 1)
-
-                j++
-            }
-        }
+    let matchweek = [];
+    for (let j = 0; j < matchesPerWeek; j++) {
+      let matchup = `${left[j]}-${right[j]}`
+        matchweek.push(matchup)
+      }
+      schedule[i] = [...matchweek];
     }
 
-    return matchweeks
-}
-
-export function createMatchups(teams) {
-    let matchups = []
-    for (let i = 0; i < teams.length; i++) {
-        for (let j = 0; j < teams.length; j++) {
-            let str = `${i}-${j}`
-            if (i != j && !matchups.includes(str) && !matchups.includes(reverse(str))) {
-                matchups.push(str)
-            }
-        }
-    }
-    return matchups
-
-    // matchWeeks = []
-    // totalWeeks = teams.length / 2
-    //
-    // for (let i = 0; i < totalWeeks; i++) {
-    //     let randomIndex = randomize(matchups.length)
-    //     let randomMatch = matchups[randomIndex]
-    //
-    //     let randomMatchClubs = randomMatch.split('-')
-    //     let matchWeekClubs = matchWeeks[i].join('-').split('-')
-    //
-    //     if (matchWeeks[i].includes(match) == false)
-    //         matchWeeks[i].push(matchups.splice(match, 1))
-    // }
-    // return matchWeeks
+    return schedule
 }

@@ -3,7 +3,7 @@ import '../App.css';
 import Header from './Header';
 import Table from './Table';
 import teamsData from '../teams.js';
-import { createMatchups, setWeeklyMatchups } from '../helpers.js'
+import { createSchedule } from '../helpers.js'
 
 function App() {
 
@@ -11,24 +11,19 @@ function App() {
     const [history, setHistory] = useState([]);
     const currentMatchWeek = history.slice(-1)[0]
 
-    // Get all matchups for the season
-    const clubIds = teams.map(team => team.id)
-    const matchups = createMatchups(clubIds)
+    const clubs = teams.map(team => team.id)
+    const [schedule, setSchedule] = useState(createSchedule(clubs))
 
-    const weeklyMatchups = setWeeklyMatchups(matchups, teams.length)
-    console.log(weeklyMatchups)
 
+    console.log(currentMatchWeek)
 
     function runMatchweek() {
         const nextMatchWeek = {
-            'played': history.length + 1
+            'played': history.length + 1,
+            'fixtures': schedule[history.length]
         }
         const updatedHistory = [...history, nextMatchWeek]
         setHistory(updatedHistory)
-
-        // console.log(teams)
-        // let matchups = createMatchups([0,1,2,3])
-        // console.log(matchups)
     }
 
     return (
