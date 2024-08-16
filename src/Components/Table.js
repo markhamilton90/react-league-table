@@ -1,7 +1,20 @@
 import { useState } from 'react';
 import Row from './Row';
 
-function Table({ teams, matchWeek }) {
+function Table({ teams, lastMatchWeek, nextMatches }) {
+
+    function getOpponent(clubId) {
+        if (!nextMatches) {
+            return
+        }
+
+        let matchup = nextMatches.find(el => el.includes(clubId))
+        let opponentID = matchup.split('-').find(el => parseInt(el) !== clubId)
+        let opponentClub = teams.find(el => el.id == parseInt(opponentID))
+
+        return opponentClub
+    }
+
     return (
         <table>
             <thead>
@@ -16,6 +29,7 @@ function Table({ teams, matchWeek }) {
                     <th>GA</th>
                     <th>GD</th>
                     <th>Points</th>
+                    <th>Next</th>
                     <th>Form</th>
                 </tr>
             </thead>
@@ -25,7 +39,8 @@ function Table({ teams, matchWeek }) {
                         <Row
                             team={team}
                             index={index}
-                            matchWeek={matchWeek}
+                            lastMatchWeek={lastMatchWeek}
+                            nextOpponent={getOpponent(team.id)}
                         />
                     ))
                 }

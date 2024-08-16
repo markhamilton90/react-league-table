@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import Position from './Position';
 import Club from './Club';
+import NextMatch from './NextMatch';
 import RecentForm from './RecentForm';
 
-function Row({ team, matchWeek }) {
+function Row({ team, lastMatchWeek, nextOpponent }) {
+
     return (
         <tr>
             <Position position={team.position}/>
-            <Club name={team.name}/>
+            <Club name={team.name} badge={team.badge}/>
             <td className="played">
-                {matchWeek ? matchWeek.played : 0}
+                {lastMatchWeek ? lastMatchWeek.played : 0}
             </td>
             <td>0</td>
             <td>0</td>
@@ -18,6 +20,7 @@ function Row({ team, matchWeek }) {
             <td>0</td>
             <td>0</td>
             <td>0</td>
+            <NextMatch opponent={nextOpponent}/>
             <RecentForm />
         </tr>
     )

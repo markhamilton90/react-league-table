@@ -33,3 +33,18 @@ td {
 tr {
     border-bottom: 1px solid #ddd;
 }
+
+.badge {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.clubname {
+    vertical-align: middle;
+}
+.next {
+    text-align: center;
+}
