@@ -3,6 +3,20 @@ export function randomize(range) {
     return Math.floor(Math.random() * range)
 }
 
+export function playMatch(club1, club2) {
+    switch (randomize(3)) {
+        case 0:
+            return [club1, club2]
+            break;
+        case 1:
+            return club1
+            break;
+        case 2:
+            return club2
+            break;
+    }
+}
+
 /*
 This requires an even number of teams in order
 to reliably and predictably generate all matchups.

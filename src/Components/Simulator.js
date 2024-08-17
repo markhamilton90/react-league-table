@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-function Simulator({handleClick}) {
+function Simulator({handleClick, seasonComplete}) {
     return (
-        <button onClick={handleClick}>
+        <button onClick={handleClick} disabled={seasonComplete}>
             Run Simulation
         </button>
     )

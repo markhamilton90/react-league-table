@@ -6,9 +6,9 @@ function NextMatch({ opponent }) {
 
     const opponentBadge = (
         <span
-            title={opponent.name}
+            title={opponent?.name}
             className="badge"
-            style={{background: opponent.badge}}>
+            style={{background: opponent?.badge}}>
         </span>
     )
 

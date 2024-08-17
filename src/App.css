@@ -40,10 +40,12 @@ tr {
     height: 18px;
     vertical-align: middle;
     border-radius: 50%;
-    margin-right: 10px;
 }
 .clubname {
     vertical-align: middle;
+}
+.club .badge {
+    margin-right: 10px;
 }
 .next {
     text-align: center;
