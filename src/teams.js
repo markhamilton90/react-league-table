@@ -7,7 +7,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Tigers FC",
@@ -17,7 +18,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Bears FC",
@@ -27,7 +29,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Goats FC",
@@ -37,7 +40,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Meerkats FC",
@@ -47,7 +51,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Pegasus FC",
@@ -57,7 +62,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Druids FC",
@@ -67,7 +73,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Manticores FC",
@@ -77,7 +84,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Chimeras FC",
@@ -87,7 +95,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     },
     {
         "name": "Minotaurs FC",
@@ -97,7 +106,8 @@ const teams = [
         "won": 0,
         "lost": 0,
         "drawn": 0,
-        "points": 0
+        "points": 0,
+        "results": []
     }
 ];
 

@@ -31,7 +31,7 @@ function Row({ team, index, lastMatchWeek, nextOpponent }) {
             <td className="ga hidden-xs">0</td>
             <td className="gdiff hidden-xs">0</td>
             <NextMatch opponent={nextOpponent}/>
-            <RecentForm />
+            <RecentForm team={team}/>
         </tr>
     )
 }

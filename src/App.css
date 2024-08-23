@@ -4,9 +4,7 @@
 }
 
 header {
-    /* background: linear-gradient(to right, orange, orangered); */
     background: linear-gradient(45deg, #ef1bc0, #4472eb);
-    /* background: orange; */
     color: white;
     padding: 50px 25px;
     display: flex;
@@ -65,16 +63,51 @@ tr.first-place {
 .club .badge {
     margin-right: 10px;
 }
+
+.points {
+    font-weight: 900;
+}
+
 th.gf,
 th.ga,
 th.gdiff {
     padding: 0 7px;
 }
+
 .next {
     text-align: center;
 }
-.points {
+
+.form ul {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.form ul li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.form ul li abbr {
+    display: block;
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+    line-height: 15px;
     font-weight: 900;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 50%;
+    padding: 5px;
+}
+.form ul li.win abbr {
+    background: #ef1bc0;
+}
+.form ul li.loss abbr {
+    background: #4472eb;
+}
+.form ul li.draw abbr {
+    background: #333;
 }
 
 @media (max-width: 1024px) {

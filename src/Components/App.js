@@ -27,8 +27,8 @@ function App() {
         const results = playGames(currentFixtures)
 
         // Update points and placement of teams
-        let nextTeams = calculatePoints(results, currentFixtures, currentTeams)
-        let nextSortedTeams = reorderTeams(nextTeams)
+        const nextTeams = calculatePoints(results, currentFixtures, currentTeams)
+        const nextSortedTeams = reorderTeams(nextTeams)
         setTeams([...nextSortedTeams])
 
         // Update the history
@@ -53,18 +53,30 @@ function App() {
                     teams[teamA]['points'] += 1
                     teams[teamB]['drawn'] += 1
                     teams[teamB]['points'] += 1
+
+                    teams[teamA]['results'].push(1)
+                    teams[teamB]['results'].push(1)
+
                     break
                 // Team A lost to team B
                 case 0:
                     teams[teamA]['lost'] += 1
                     teams[teamB]['won'] += 1
                     teams[teamB]['points'] += 3
+
+                    teams[teamA]['results'].push(0)
+                    teams[teamB]['results'].push(3)
+
                     break
                 // Team A won against team B
                 case 3:
                     teams[teamA]['won'] += 1
                     teams[teamA]['points'] += 3
                     teams[teamB]['lost'] += 1
+
+                    teams[teamA]['results'].push(3)
+                    teams[teamB]['results'].push(0)
+
                     break
             }
         })
