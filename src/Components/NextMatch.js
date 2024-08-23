@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function NextMatch({ opponent }) {
 
-    const emptySpan = <span>&bull;</span>
+    const empty = <span>&bull;</span>
 
     const opponentBadge = (
         <span
@@ -12,10 +12,10 @@ function NextMatch({ opponent }) {
         </span>
     )
 
-    const content = opponent ? opponentBadge : emptySpan
+    const content = opponent ? opponentBadge : empty
 
     return (
-        <td className="next">
+        <td className="next hidden-sm">
             { content }
         </td>
     )

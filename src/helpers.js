@@ -3,16 +3,26 @@ export function randomize(range) {
     return Math.floor(Math.random() * range)
 }
 
-export function playMatch(club1, club2) {
+export function playGames(fixtures) {
+
+    let results = fixtures.map(el => {
+        const [a, b] = el.split('-').map(Number)
+        return getResult(a, b)
+    })
+
+    return results
+}
+
+export function getResult(club1, club2) {
     switch (randomize(3)) {
         case 0:
-            return [club1, club2]
+            return [1, 1]
             break;
         case 1:
-            return club1
+            return [3, 0]
             break;
         case 2:
-            return club2
+            return [0, 3]
             break;
     }
 }

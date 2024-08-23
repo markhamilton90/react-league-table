@@ -1,10 +1,23 @@
+:root {
+    --mobileDown: 767px;
+    --tabletDown: 1024px;
+}
+
 header {
     /* background: linear-gradient(to right, orange, orangered); */
-    background: orange;
+    background: linear-gradient(45deg, #ef1bc0, #4472eb);
+    /* background: orange; */
     color: white;
     padding: 50px 25px;
     display: flex;
     justify-content: space-between;
+}
+button {
+    background: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
 }
 h1 {
     margin: 0;
@@ -18,6 +31,8 @@ thead {
     background: #eee;
 }
 th {
+    font-size: .9em;
+    color: #333;
     padding: 5px 0;
 }
 th.position,
@@ -33,6 +48,9 @@ td {
 tr {
     border-bottom: 1px solid #ddd;
 }
+tr.first-place {
+    border-color: #4472eb;
+}
 
 .badge {
     display: inline-block;
@@ -47,6 +65,26 @@ tr {
 .club .badge {
     margin-right: 10px;
 }
+th.gf,
+th.ga,
+th.gdiff {
+    padding: 0 7px;
+}
 .next {
     text-align: center;
+}
+.points {
+    font-weight: 900;
+}
+
+@media (max-width: 1024px) {
+    .hidden-sm {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none;
+    }
 }

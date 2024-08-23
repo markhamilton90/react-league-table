@@ -2,62 +2,102 @@ const teams = [
     {
         "name": "Lions FC",
         "position": 1,
-        "id": 1,
-        "badge": 'gold'
+        "id": 0,
+        "badge": 'gold',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Tigers FC",
         "position": 2,
-        "id": 2,
-        "badge": 'silver'
+        "id": 1,
+        "badge": 'silver',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Bears FC",
         "position": 3,
-        "id": 3,
-        "badge": 'teal'
+        "id": 2,
+        "badge": 'teal',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Goats FC",
         "position": 4,
-        "id": 4,
-        "badge": 'purple'
+        "id": 3,
+        "badge": 'purple',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
-        "name": "Minotaurs FC",
+        "name": "Meerkats FC",
         "position": 5,
-        "id": 5,
-        "badge": 'hotpink'
+        "id": 4,
+        "badge": 'hotpink',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Pegasus FC",
         "position": 6,
-        "id": 6,
-        "badge": 'red'
+        "id": 5,
+        "badge": 'red',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Druids FC",
         "position": 7,
-        "id": 7,
-        "badge": 'cyan'
+        "id": 6,
+        "badge": 'cyan',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Manticores FC",
         "position": 8,
-        "id": 8,
-        "badge": 'lime'
+        "id": 7,
+        "badge": 'lime',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Chimeras FC",
         "position": 9,
-        "id": 9,
-        "badge": 'gray'
+        "id": 8,
+        "badge": 'gray',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     },
     {
         "name": "Minotaurs FC",
         "position": 10,
-        "id": 10,
-        "badge": 'green'
+        "id": 9,
+        "badge": 'green',
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
     }
 ];
 

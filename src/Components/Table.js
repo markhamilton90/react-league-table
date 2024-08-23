@@ -9,8 +9,8 @@ function Table({ teams, lastMatchWeek, nextMatches }) {
         }
 
         let matchup = nextMatches.find(el => el.includes(clubId))
-        let opponentID = matchup.split('-').find(el => parseInt(el) !== clubId)
-        let opponentClub = teams.find(el => el.id == parseInt(opponentID))
+        let opponentID = matchup.split('-').map(Number).find(el => el !== clubId)
+        let opponentClub = teams.find(el => el.id == opponentID)
 
         return opponentClub
     }
@@ -21,15 +21,15 @@ function Table({ teams, lastMatchWeek, nextMatches }) {
                 <tr>
                     <th className="position">Position</th>
                     <th className="club">Club</th>
+                    <th>Points</th>
                     <th>Played</th>
                     <th>Won</th>
                     <th>Drawn</th>
                     <th>Lost</th>
-                    <th>GF</th>
-                    <th>GA</th>
-                    <th>GD</th>
-                    <th>Points</th>
-                    <th>Next</th>
+                    <th className="gf hidden-xs">GF</th>
+                    <th className="ga hidden-xs">GA</th>
+                    <th className="gdiff hidden-xs">GD</th>
+                    <th className="hidden-sm">Next</th>
                     <th>Form</th>
                 </tr>
             </thead>

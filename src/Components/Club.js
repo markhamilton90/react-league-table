@@ -1,4 +1,7 @@
 import { useState } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 function Club({ name, badge }) {
     return (
