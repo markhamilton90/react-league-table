@@ -46,8 +46,64 @@ td {
 tr {
     border-bottom: 1px solid #ddd;
 }
-tr.first-place {
+tbody tr:nth-child(1) {
     border-color: #4472eb;
+}
+tbody tr:nth-last-child(4) {
+    border-color: red;
+}
+
+td.position {
+    padding-left: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.position .previous {
+    display: inline-block;
+    margin-left: 20px;
+}
+.position .previous.no-movement {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #333;
+    vertical-align: middle;
+}
+.position .previous.moved-up {
+    position: relative;
+    top: -3px;
+    border: 5px solid #0ee00e;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+.position .previous.moved-down {
+    position: relative;
+    top: 3px;
+    border: 5px solid red;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.position:hover .tooltip {
+    display: block;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    top: -25%;
+    right: -25%;
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    background: #4472eb;
+    background: #ef1bc0;
+    padding: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.25);
+    white-space: nowrap;
 }
 
 .badge {
@@ -78,6 +134,10 @@ th.gdiff {
     text-align: center;
 }
 
+td.form {
+    position: relative;
+}
+
 .form ul {
     text-align: center;
     list-style: none;
@@ -87,6 +147,7 @@ th.gdiff {
 .form ul li {
     display: inline-block;
     margin: 0 5px;
+    cursor: pointer;
 }
 .form ul li abbr {
     display: block;
@@ -100,14 +161,23 @@ th.gdiff {
     border-radius: 50%;
     padding: 5px;
 }
-.form ul li.win abbr {
+.form ul li abbr.win {
     background: #ef1bc0;
 }
-.form ul li.loss abbr {
+.form ul li abbr.loss {
     background: #4472eb;
 }
-.form ul li.draw abbr {
+.form ul li abbr.draw {
     background: #333;
+}
+
+.form ul li .tooltip {
+    right: 0
+}
+
+.form ul li:hover .tooltip {
+    display: block;
+    padding: 10px;
 }
 
 @media (max-width: 1024px) {

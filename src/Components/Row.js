@@ -4,19 +4,21 @@ import Club from './Club';
 import NextMatch from './NextMatch';
 import RecentForm from './RecentForm';
 
-function Row({ team, index, lastMatchWeek, nextOpponent }) {
-
-    const classes = index == 0 ? 'first-place' : ''
+function Row({ team, allTeams, index, played, nextOpponent }) {
 
     return (
-        <tr className={ classes }>
-            <Position position={index + 1}/>
+        <tr>
+            <Position
+                played={played}
+                position={index}
+                prevPosition={team.prevPosition}
+            />
             <Club name={team.name} badge={team.badge}/>
             <td className="points">
                 {team.points}
             </td>
             <td className="played">
-                {lastMatchWeek ? lastMatchWeek.played : 0}
+                {played}
             </td>
             <td className="won">
                 {team.won}
@@ -31,7 +33,10 @@ function Row({ team, index, lastMatchWeek, nextOpponent }) {
             <td className="ga hidden-xs">0</td>
             <td className="gdiff hidden-xs">0</td>
             <NextMatch opponent={nextOpponent}/>
-            <RecentForm team={team}/>
+            <RecentForm
+                team={team}
+                allTeams={allTeams}
+            />
         </tr>
     )
 }

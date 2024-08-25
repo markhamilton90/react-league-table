@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Row from './Row';
 
-function Table({ teams, lastMatchWeek, nextMatches }) {
+function Table({ teams, played, nextMatches }) {
 
     function getOpponent(clubId) {
         if (!nextMatches) {
@@ -38,8 +38,9 @@ function Table({ teams, lastMatchWeek, nextMatches }) {
                     teams.map((team, index) => (
                         <Row
                             team={team}
+                            allTeams={teams}
                             index={index}
-                            lastMatchWeek={lastMatchWeek}
+                            played={played}
                             nextOpponent={getOpponent(team.id)}
                         />
                     ))

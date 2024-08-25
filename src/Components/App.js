@@ -16,7 +16,6 @@ function App() {
     const totalWeeks = clubs.length - 1
     const seasonComplete = history.length >= totalWeeks
 
-    const lastMatchWeek = history.slice(-1)[0]
     const nextMatches = schedule[history.length]
 
     function runMatchweek() {
@@ -28,7 +27,7 @@ function App() {
 
         // Update points and placement of teams
         const nextTeams = calculatePoints(results, currentFixtures, currentTeams)
-        const nextSortedTeams = reorderTeams(nextTeams)
+        const nextSortedTeams = reorderTeams(teams)
         setTeams([...nextSortedTeams])
 
         // Update the history
@@ -44,38 +43,50 @@ function App() {
     function calculatePoints(results, fixtures, teams) {
 
         results.forEach( (res, i) => {
-            const [teamA, teamB] = fixtures[i].split('-').map(Number)
+            const [a, b] = fixtures[i].split('-').map(Number)
+            console.log('fixtures')
+            console.log(a, b)
+
+            const teamA = teams.find(el => el['id'] == a)
+            const teamB = teams.find(el => el['id'] == b)
+
+            console.log('teams')
+            console.log(teamA, teamB)
+
+            // record this matchup for each team
+            teamA['opponents'].push(teamB)
+            teamB['opponents'].push(teamA)
 
             switch (res[0]) {
                 // Outcome was a draw
                 case 1:
-                    teams[teamA]['drawn'] += 1
-                    teams[teamA]['points'] += 1
-                    teams[teamB]['drawn'] += 1
-                    teams[teamB]['points'] += 1
+                    teamA['drawn'] += 1
+                    teamA['points'] += 1
+                    teamB['drawn'] += 1
+                    teamB['points'] += 1
 
-                    teams[teamA]['results'].push(1)
-                    teams[teamB]['results'].push(1)
+                    teamA['results'].push(1)
+                    teamB['results'].push(1)
 
                     break
                 // Team A lost to team B
                 case 0:
-                    teams[teamA]['lost'] += 1
-                    teams[teamB]['won'] += 1
-                    teams[teamB]['points'] += 3
+                    teamA['lost'] += 1
+                    teamB['won'] += 1
+                    teamB['points'] += 3
 
-                    teams[teamA]['results'].push(0)
-                    teams[teamB]['results'].push(3)
+                    teamA['results'].push(0)
+                    teamB['results'].push(3)
 
                     break
                 // Team A won against team B
                 case 3:
-                    teams[teamA]['won'] += 1
-                    teams[teamA]['points'] += 3
-                    teams[teamB]['lost'] += 1
+                    teamA['won'] += 1
+                    teamA['points'] += 3
+                    teamB['lost'] += 1
 
-                    teams[teamA]['results'].push(3)
-                    teams[teamB]['results'].push(0)
+                    teamA['results'].push(3)
+                    teamB['results'].push(0)
 
                     break
             }
@@ -95,13 +106,18 @@ function App() {
             return 0
         })
 
-        return teams
+        // Update position values before returning
+        return teams.map( (team, index) => {
+            team['prevPosition'] = team['position']
+            team['position'] = index
+            return team
+        })
     }
 
     return (
         <div className="league-table">
             <Header handleClick={runMatchweek} seasonComplete={seasonComplete}/>
-            <Table teams={teams} lastMatchWeek={lastMatchWeek} nextMatches={nextMatches}/>
+            <Table teams={teams} played={currentWeek} nextMatches={nextMatches}/>
         </div>
     );
 }

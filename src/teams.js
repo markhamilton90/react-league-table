@@ -1,113 +1,133 @@
 const teams = [
     {
         "name": "Lions FC",
-        "position": 1,
+        "position": 0,
+        "prevPosition": '',
         "id": 0,
         "badge": 'gold',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Tigers FC",
-        "position": 2,
+        "position": 1,
+        "prevPosition": '',
         "id": 1,
         "badge": 'silver',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Bears FC",
-        "position": 3,
+        "position": 2,
+        "prevPosition": '',
         "id": 2,
         "badge": 'teal',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Goats FC",
-        "position": 4,
+        "position": 3,
+        "prevPosition": '',
         "id": 3,
         "badge": 'purple',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Meerkats FC",
-        "position": 5,
+        "position": 4,
+        "prevPosition": '',
         "id": 4,
         "badge": 'hotpink',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Pegasus FC",
-        "position": 6,
+        "position": 5,
+        "prevPosition": '',
         "id": 5,
         "badge": 'red',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Druids FC",
-        "position": 7,
+        "position": 6,
+        "prevPosition": '',
         "id": 6,
         "badge": 'cyan',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Manticores FC",
-        "position": 8,
+        "position": 7,
+        "prevPosition": '',
         "id": 7,
         "badge": 'lime',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Chimeras FC",
-        "position": 9,
+        "position": 8,
+        "prevPosition": '',
         "id": 8,
         "badge": 'gray',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     },
     {
         "name": "Minotaurs FC",
-        "position": 10,
+        "position": 9,
+        "prevPosition": '',
         "id": 9,
         "badge": 'green',
         "won": 0,
         "lost": 0,
         "drawn": 0,
         "points": 0,
-        "results": []
+        "results": [],
+        "opponents": []
     }
 ];
 
