@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function NextMatch({ opponent }) {
 
     const empty = <span>&bull;</span>
+    const badgeName = opponent?.badge || 'futbol'
 
     const opponentBadge = (
-        <span
-            title={opponent?.name}
-            className="badge"
-            style={{background: opponent?.badge}}>
+        <span className="next-opponent">
+            <FontAwesomeIcon
+                icon={badgeName}
+                title={opponent?.name}
+                style={{color:opponent?.color}}
+            />
         </span>
     )
 

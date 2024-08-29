@@ -5,18 +5,25 @@ import Table from './Table';
 import teamsData from '../teams.js';
 import { createSchedule, playGames, updateTeamStats } from '../helpers.js'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 function App() {
 
     const [teams, setTeams] = useState(teamsData)
     const [history, setHistory] = useState([])
     const clubs = teams.map(team => team.id)
     const [schedule, setSchedule] = useState(createSchedule(clubs))
-    const [currentWeek, setCurrentWeek] = useState(0)
 
+    const currentWeek = history.length
     const totalWeeks = clubs.length - 1
     const seasonComplete = history.length >= totalWeeks
 
     const nextMatches = schedule[history.length]
+
+    // Return team object by id
+    function getTeamData(id) {
+        return teams.find(el => el.id === id)
+    }
 
     function runMatchweek() {
 
@@ -32,30 +39,23 @@ function App() {
 
         // Update the history
         const nextHistoryEntry = {
-            'played': history.length + 1,
             'fixtures': schedule[history.length]
         }
 
         setHistory([...history, nextHistoryEntry])
-        setCurrentWeek(currentWeek + 1)
     }
 
     function calculatePoints(results, fixtures, teams) {
 
         results.forEach( (res, i) => {
             const [a, b] = fixtures[i].split('-').map(Number)
-            console.log('fixtures')
-            console.log(a, b)
 
             const teamA = teams.find(el => el['id'] == a)
             const teamB = teams.find(el => el['id'] == b)
 
-            console.log('teams')
-            console.log(teamA, teamB)
-
             // record this matchup for each team
-            teamA['opponents'].push(teamB)
-            teamB['opponents'].push(teamA)
+            teamA['opponents'].push(teamB['id'])
+            teamB['opponents'].push(teamA['id'])
 
             switch (res[0]) {
                 // Outcome was a draw
@@ -116,8 +116,16 @@ function App() {
 
     return (
         <div className="league-table">
-            <Header handleClick={runMatchweek} seasonComplete={seasonComplete}/>
-            <Table teams={teams} played={currentWeek} nextMatches={nextMatches}/>
+            <Header
+                handleClick={runMatchweek}
+                seasonComplete={seasonComplete}
+            />
+            <Table 
+                teams={teams}
+                played={currentWeek}
+                nextMatches={nextMatches}
+                getTeamData={getTeamData}
+            />
         </div>
     );
 }

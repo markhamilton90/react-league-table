@@ -1,13 +1,10 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function RecentForm({ team, allTeams }) {
+function RecentForm({ team, getTeamData }) {
 
     const results = team.results.slice(-5)
     const opponents = team.opponents.slice(-5)
-
-    function getOpponent(id) {
-        return allTeams.find(el => el['id'] === id)
-    }
 
     const win = (
         <abbr title="Won" className="win">W</abbr>
@@ -22,20 +19,28 @@ function RecentForm({ team, allTeams }) {
     )
 
     return (
-        <td className="form">
+        <td className="form hidden-xs">
             <ul>
                 {
                     results.map( (res, index) => (
                         <li>
                             <div className="tooltip tooltip-previous">
                                 <div className="tooltip-content">
-                                    <span>
-                                        {team.name}
+                                    <span className="short-name">
+                                        {team.shortName}
+                                        <FontAwesomeIcon
+                                            icon={team.badge}
+                                            style={{color:team.color}}
+                                        />
                                     </span>
-                                    &nbsp;vs&nbsp;
-                                    <span>
-                                        {/* {allTeams.find(el => el['id'] == opponents[index]['id']).name} */}
-                                        {getOpponent(opponents[index]['id']).name}
+                                    <span className="score">
+                                        vs
+                                    </span>
+                                    <span className="short-name opponent">
+                                        <FontAwesomeIcon
+                                            icon={getTeamData(opponents[index]).badge} style={{color:getTeamData(opponents[index]).color}}
+                                        />
+                                        {getTeamData(opponents[index]).shortName}
                                     </span>
                                 </div>
                             </div>

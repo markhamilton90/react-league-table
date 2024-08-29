@@ -1,4 +1,6 @@
 
+// TODO: make a new outcomes object for completed matches
+
 export function randomize(range) {
     return Math.floor(Math.random() * range)
 }

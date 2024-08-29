@@ -4,7 +4,7 @@ import Club from './Club';
 import NextMatch from './NextMatch';
 import RecentForm from './RecentForm';
 
-function Row({ team, allTeams, index, played, nextOpponent }) {
+function Row({ team, allTeams, index, played, nextOpponent, getTeamData }) {
 
     return (
         <tr>
@@ -13,7 +13,9 @@ function Row({ team, allTeams, index, played, nextOpponent }) {
                 position={index}
                 prevPosition={team.prevPosition}
             />
-            <Club name={team.name} badge={team.badge}/>
+            <Club
+                team={team}
+            />
             <td className="points">
                 {team.points}
             </td>
@@ -31,11 +33,11 @@ function Row({ team, allTeams, index, played, nextOpponent }) {
             </td>
             <td className="gf hidden-xs">0</td>
             <td className="ga hidden-xs">0</td>
-            <td className="gdiff hidden-xs">0</td>
+            <td className="gdiff">0</td>
             <NextMatch opponent={nextOpponent}/>
             <RecentForm
                 team={team}
-                allTeams={allTeams}
+                getTeamData={getTeamData}
             />
         </tr>
     )

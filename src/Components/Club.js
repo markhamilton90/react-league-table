@@ -1,13 +1,13 @@
 import { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-// import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Club({ name, badge }) {
+function Club({ team }) {
+
     return (
         <td className="club">
-            <span className="badge" style={{background: badge}}></span>
-            <span className="clubname">{name}</span>
+            <FontAwesomeIcon icon={team.badge} style={{color:team.color}} />
+            <span className="clubname hidden-sm">{team.name}</span>
+            <span className="short-name hidden-md-up">{team.shortName}</span>
         </td>
     )
 }

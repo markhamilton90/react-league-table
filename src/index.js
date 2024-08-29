@@ -4,6 +4,15 @@ import './index.css';
 import App from './Components/App';
 import reportWebVitals from './reportWebVitals';
 
+// Font Awesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+    faOtter, faShrimp, faHatWizard, faDragon, faDog, faHorseHead, faCrow, faFrog, faRocket, faShieldCat, faFutbol
+} from '@fortawesome/free-solid-svg-icons'
+library.add(
+    faOtter, faShrimp, faHatWizard, faDragon, faDog, faHorseHead, faCrow, faFrog, faRocket, faShieldCat, faFutbol
+)
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
