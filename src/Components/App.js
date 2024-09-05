@@ -3,8 +3,7 @@ import '../App.css';
 import Header from './Header';
 import Table from './Table';
 import teamsData from '../teams.js';
-import { createSchedule, playGames, updateTeamStats } from '../helpers.js'
-
+import { createSchedule, playGames } from '../helpers.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function App() {
@@ -13,16 +12,22 @@ function App() {
     const [history, setHistory] = useState([])
     const clubs = teams.map(team => team.id)
     const [schedule, setSchedule] = useState(createSchedule(clubs))
+    const [matchesPlayed, setMatchesPlayed] = useState([])
 
     const currentWeek = history.length
     const totalWeeks = clubs.length - 1
-    const seasonComplete = history.length >= totalWeeks
+    const seasonComplete = currentWeek >= totalWeeks
 
-    const nextMatches = schedule[history.length]
+    const nextMatches = schedule[currentWeek]
 
-    // Return team object by id
+    // Return a single team by id
     function getTeamData(id) {
         return teams.find(el => el.id === id)
+    }
+
+    // Return a single match by id
+    function getMatchData(id) {
+        return matchesPlayed.find((el, index) => index === id)
     }
 
     function runMatchweek() {
@@ -31,11 +36,17 @@ function App() {
         const currentTeams = [...teams]
         const currentFixtures = schedule[currentWeek]
         const results = playGames(currentFixtures)
+        const currentMatchesPlayed = [...matchesPlayed]
 
-        // Update points and placement of teams
-        const nextTeams = calculatePoints(results, currentFixtures, currentTeams)
+        // Update points and scores
+        const [nextTeams, nextMatchesPlayed] = calculatePoints(results, currentFixtures, currentTeams, currentMatchesPlayed)
+
+        // Update placement of teams
         const nextSortedTeams = reorderTeams(teams)
         setTeams([...nextSortedTeams])
+
+        // Update matches played
+        setMatchesPlayed(nextMatchesPlayed)
 
         // Update the history
         const nextHistoryEntry = {
@@ -45,7 +56,7 @@ function App() {
         setHistory([...history, nextHistoryEntry])
     }
 
-    function calculatePoints(results, fixtures, teams) {
+    function calculatePoints(results, fixtures, teams, matchesPlayed) {
 
         results.forEach( (res, i) => {
             const [a, b] = fixtures[i].split('-').map(Number)
@@ -57,42 +68,65 @@ function App() {
             teamA['opponents'].push(teamB['id'])
             teamB['opponents'].push(teamA['id'])
 
-            switch (res[0]) {
-                // Outcome was a draw
-                case 1:
-                    teamA['drawn'] += 1
-                    teamA['points'] += 1
-                    teamB['drawn'] += 1
-                    teamB['points'] += 1
+            // calculate goal differential from the score
+            teamA['gf'] += res[0]
+            teamA['ga'] += res[1]
+            teamA['gd'] = teamA['gf'] - teamA['ga']
 
-                    teamA['results'].push(1)
-                    teamB['results'].push(1)
+            teamB['gf'] += res[1]
+            teamB['ga'] += res[0]
+            teamB['gd'] = teamB['gf'] - teamB['ga']
 
-                    break
-                // Team A lost to team B
-                case 0:
-                    teamA['lost'] += 1
-                    teamB['won'] += 1
-                    teamB['points'] += 3
+            const matchDetails = {}
+            matchDetails['clubs'] = [teamA['id'], teamB['id']]
 
-                    teamA['results'].push(0)
-                    teamB['results'].push(3)
+            // team A won against team B
+            if (res[0] > res[1]) {
+                teamA['won'] += 1
+                teamA['points'] += 3
+                teamB['lost'] += 1
 
-                    break
-                // Team A won against team B
-                case 3:
-                    teamA['won'] += 1
-                    teamA['points'] += 3
-                    teamB['lost'] += 1
+                teamA['results'].push(3)
+                teamB['results'].push(0)
 
-                    teamA['results'].push(3)
-                    teamB['results'].push(0)
-
-                    break
+                matchDetails['winner'] = teamA['id']
+                matchDetails['score'] = [res[0], res[1]]
             }
+            // team A lost to team B
+            else if (res[0] < res[1]) {
+                teamA['lost'] += 1
+                teamB['won'] += 1
+                teamB['points'] += 3
+
+                teamA['results'].push(0)
+                teamB['results'].push(3)
+
+                matchDetails['winner'] = teamB['id']
+                matchDetails['score'] = [res[1], res[0]]
+            }
+            // Draw game
+            else {
+                teamA['drawn'] += 1
+                teamA['points'] += 1
+                teamB['drawn'] += 1
+                teamB['points'] += 1
+
+                teamA['results'].push(1)
+                teamB['results'].push(1)
+
+                matchDetails['winner'] = null
+                matchDetails['score'] = [res[0], res[1]]
+            }
+
+            matchesPlayed.push(matchDetails)
+            const lastIndex = matchesPlayed.length - 1
+
+            teamA['matchesPlayed'].push(lastIndex)
+            teamB['matchesPlayed'].push(lastIndex)
         })
 
-        return teams
+
+        return [teams, matchesPlayed]
     }
 
     function reorderTeams(teams) {
@@ -103,7 +137,14 @@ function App() {
 
             if (keyA > keyB) return -1
             if (keyA < keyB) return 1
-            return 0
+
+            // If points are the same, determine ranking
+            // based on goal differential
+            if (keyA == keyB) {
+                if (a.gd > b.gd) return -1
+                if (a.gd < b.gd) return 1
+                return 0
+            }
         })
 
         // Update position values before returning
@@ -115,16 +156,17 @@ function App() {
     }
 
     return (
-        <div className="league-table">
+        <div className="league-table-app">
             <Header
                 handleClick={runMatchweek}
                 seasonComplete={seasonComplete}
             />
-            <Table 
+            <Table
                 teams={teams}
                 played={currentWeek}
                 nextMatches={nextMatches}
                 getTeamData={getTeamData}
+                getMatchData={getMatchData}
             />
         </div>
     );

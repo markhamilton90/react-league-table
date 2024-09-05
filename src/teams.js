@@ -11,8 +11,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Wizards FC",
@@ -26,8 +30,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Shrimp FC",
@@ -41,8 +49,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Dragons FC",
@@ -56,8 +68,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Doggies FC",
@@ -71,8 +87,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Kittycats FC",
@@ -86,8 +106,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Stallions FC",
@@ -101,8 +125,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Frogs FC",
@@ -116,8 +144,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Rockets FC",
@@ -131,8 +163,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     },
     {
         "name": "Crows FC",
@@ -146,8 +182,12 @@ const teams = [
         "lost": 0,
         "drawn": 0,
         "points": 0,
+        "gf": 0,
+        "ga": 0,
+        "gd": 0,
         "results": [],
-        "opponents": []
+        "opponents": [],
+        "matchesPlayed": []
     }
 ];
 

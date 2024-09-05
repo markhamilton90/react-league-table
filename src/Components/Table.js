@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Row from './Row';
 
-function Table({ teams, played, nextMatches, getTeamData }) {
+function Table({ teams, played, nextMatches, getTeamData, getMatchData }) {
 
     function getOpponent(clubId) {
         if (!nextMatches) {
@@ -16,7 +16,7 @@ function Table({ teams, played, nextMatches, getTeamData }) {
     }
 
     return (
-        <table>
+        <table className="league-table container-wide">
             <thead>
                 <tr>
                     <th className="position">Position</th>
@@ -43,6 +43,7 @@ function Table({ teams, played, nextMatches, getTeamData }) {
                             played={played}
                             nextOpponent={getOpponent(team.id)}
                             getTeamData={getTeamData}
+                            getMatchData={getMatchData}
                         />
                     ))
                 }
