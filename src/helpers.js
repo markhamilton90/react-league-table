@@ -2,13 +2,11 @@ export function randomize(range) {
     return Math.floor(Math.random() * range)
 }
 
+// Get goals for each team in the match
 export function playGames(fixtures) {
-
-    // Get goals for each team in the match
     let results = fixtures.map(el => {
         return [randomize(6), randomize(6)]
     })
-
     return results
 }
 
@@ -37,20 +35,17 @@ export function createSchedule(clubs) {
 
     for (let i = 0; i < weeks; i++) {
 
-        // cyclical method to get every permutation
+        // Cyclical method to get every permutation
         // 1, 2, 3  |  6, 5, 4
         // ====================
-        // remove first element from right array,
+        // Remove first element from right array,
         // and place it right after the first index in the left array
         let toLeft = right.shift();
         left.splice(1, 0, toLeft);
-        // remove last element from left array,
+        // Remove last element from left array,
         // and append it to the right array
         let toRight = left.pop();
         right.push(toRight);
-        // this is one rotation
-        //
-        // the first element in left array remains fixed
 
         let matchweek = [];
         for (let j = 0; j < matchesPerWeek; j++) {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Row from './Row';
 
 function Table({ teams, played, nextMatches, getTeamData, getMatchData }) {
@@ -7,10 +6,9 @@ function Table({ teams, played, nextMatches, getTeamData, getMatchData }) {
         if (!nextMatches) {
             return
         }
-
         let matchup = nextMatches.find(el => el.includes(clubId))
         let opponentID = matchup.split('-').map(Number).find(el => el !== clubId)
-        let opponentClub = teams.find(el => el.id == opponentID)
+        let opponentClub = getTeamData(opponentID)
 
         return opponentClub
     }
@@ -37,6 +35,7 @@ function Table({ teams, played, nextMatches, getTeamData, getMatchData }) {
                 {
                     teams.map((team, index) => (
                         <Row
+                            key={team.id}
                             team={team}
                             allTeams={teams}
                             index={index}

@@ -2,22 +2,30 @@ import { useState } from 'react';
 import '../App.css';
 import Header from './Header';
 import Table from './Table';
+import TeamNumberInput from './TeamNumberInput';
 import teamsData from '../teams.js';
 import { createSchedule, playGames } from '../helpers.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function App() {
 
-    const [teams, setTeams] = useState(teamsData)
-    const [history, setHistory] = useState([])
+    let numberOfTeams = 10
+    let subset = teamsData.slice(0, numberOfTeams)
+
+    // State
+    const [teams, setTeams] = useState(subset)
     const clubs = teams.map(team => team.id)
-    const [schedule, setSchedule] = useState(createSchedule(clubs))
+
+    const firstHalf = createSchedule(clubs)
+    const secondHalf = createSchedule(clubs)
+    const fullSchedule = firstHalf.concat(secondHalf)
+
+    const [schedule, setSchedule] = useState(fullSchedule)
     const [matchesPlayed, setMatchesPlayed] = useState([])
+    const [currentWeek, setCurrentWeek] = useState(0)
 
-    const currentWeek = history.length
-    const totalWeeks = clubs.length - 1
+    const totalWeeks = (clubs.length - 1) * 2
     const seasonComplete = currentWeek >= totalWeeks
-
     const nextMatches = schedule[currentWeek]
 
     // Return a single team by id
@@ -31,29 +39,31 @@ function App() {
     }
 
     function runMatchweek() {
-
-        // Generate match outcomes
-        const currentTeams = [...teams]
+        // Deep clone from the teams state
+        const currentTeams = teams.map(obj => ({
+             ...obj,
+             results: [ ...obj.results ],
+             opponents: [ ...obj.opponents ],
+             matchesPlayed: [ ...obj.matchesPlayed ]
+         }))
         const currentFixtures = schedule[currentWeek]
-        const results = playGames(currentFixtures)
         const currentMatchesPlayed = [...matchesPlayed]
 
+        // Generate match outcomes
+        const results = playGames(currentFixtures)
+
         // Update points and scores
-        const [nextTeams, nextMatchesPlayed] = calculatePoints(results, currentFixtures, currentTeams, currentMatchesPlayed)
+        const [nextTeams, nextMatchesPlayed] = calculatePoints(
+            results, currentFixtures, currentTeams, currentMatchesPlayed
+        )
 
         // Update placement of teams
-        const nextSortedTeams = reorderTeams(teams)
-        setTeams([...nextSortedTeams])
+        const nextSortedTeams = reorderTeams(nextTeams)
+        setTeams(nextSortedTeams)
 
-        // Update matches played
+        // Update matches played and current week
         setMatchesPlayed(nextMatchesPlayed)
-
-        // Update the history
-        const nextHistoryEntry = {
-            'fixtures': schedule[history.length]
-        }
-
-        setHistory([...history, nextHistoryEntry])
+        setCurrentWeek(currentWeek + 1)
     }
 
     function calculatePoints(results, fixtures, teams, matchesPlayed) {
@@ -64,11 +74,11 @@ function App() {
             const teamA = teams.find(el => el['id'] == a)
             const teamB = teams.find(el => el['id'] == b)
 
-            // record this matchup for each team
+            // Record this matchup for each team
             teamA['opponents'].push(teamB['id'])
             teamB['opponents'].push(teamA['id'])
 
-            // calculate goal differential from the score
+            // Calculate goal differential from the score
             teamA['gf'] += res[0]
             teamA['ga'] += res[1]
             teamA['gd'] = teamA['gf'] - teamA['ga']
@@ -80,7 +90,7 @@ function App() {
             const matchDetails = {}
             matchDetails['clubs'] = [teamA['id'], teamB['id']]
 
-            // team A won against team B
+            // Team A won against team B
             if (res[0] > res[1]) {
                 teamA['won'] += 1
                 teamA['points'] += 3
@@ -92,7 +102,7 @@ function App() {
                 matchDetails['winner'] = teamA['id']
                 matchDetails['score'] = [res[0], res[1]]
             }
-            // team A lost to team B
+            // Team A lost to team B
             else if (res[0] < res[1]) {
                 teamA['lost'] += 1
                 teamB['won'] += 1
@@ -125,13 +135,12 @@ function App() {
             teamB['matchesPlayed'].push(lastIndex)
         })
 
-
         return [teams, matchesPlayed]
     }
 
     function reorderTeams(teams) {
 
-        teams.sort( (a, b) => {
+        const sortedTeams = teams.toSorted((a, b) => {
             let keyA = a.points
             let keyB = b.points
 
@@ -148,19 +157,18 @@ function App() {
         })
 
         // Update position values before returning
-        return teams.map( (team, index) => {
-            team['prevPosition'] = team['position']
-            team['position'] = index
-            return team
-        })
+        return sortedTeams.map((obj, index) => ({
+            ...obj,
+            prevPosition: obj.position,
+            position: index
+        }))
     }
 
-    return (
-        <div className="league-table-app">
-            <Header
-                handleClick={runMatchweek}
-                seasonComplete={seasonComplete}
-            />
+    const conditionalMarkup = (numberOfTeams <= 0)
+        ? (
+            <TeamNumberInput />
+        )
+        : (
             <Table
                 teams={teams}
                 played={currentWeek}
@@ -168,6 +176,17 @@ function App() {
                 getTeamData={getTeamData}
                 getMatchData={getMatchData}
             />
+        )
+
+    return (
+        <div className="league-table-app">
+            <Header
+                handleClick={runMatchweek}
+                seasonComplete={seasonComplete}
+                currentWeek={currentWeek}
+                totalWeeks={totalWeeks}
+            />
+            { conditionalMarkup }
         </div>
     );
 }

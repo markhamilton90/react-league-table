@@ -1,19 +1,25 @@
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function NextMatch({ opponent }) {
 
     const empty = <span>&bull;</span>
-    const badgeName = opponent?.badge || 'futbol'
 
     const opponentBadge = (
-        <span className="next-opponent">
-            <FontAwesomeIcon
-                icon={badgeName}
-                title={opponent?.name}
-                style={{color:opponent?.color}}
-            />
-        </span>
+        <>
+            <span className="next-opponent">
+                <FontAwesomeIcon
+                    icon={opponent?.badge}
+                    title={opponent?.name}
+                    style={{color:opponent?.color}}
+                />
+            </span>
+
+            <div className="tooltip tooltip-next-opponent">
+                <div className="tooltip-content">
+                    {opponent?.name}
+                </div>
+            </div>
+        </>
     )
 
     const content = opponent ? opponentBadge : empty

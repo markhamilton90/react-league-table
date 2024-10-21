@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import Position from './Position';
 import Club from './Club';
 import NextMatch from './NextMatch';
 import RecentForm from './RecentForm';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function Row({ team, allTeams, index, played, nextOpponent, getTeamData, getMatchData }) {
 

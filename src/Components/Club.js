@@ -1,5 +1,6 @@
-import { useState } from 'react';
+// import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function Club({ team }) {
 

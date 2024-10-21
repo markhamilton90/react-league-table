@@ -1,304 +1,396 @@
 :root {
-    --pink: #ef1bc0;
-    --blue: #4472eb;
-    --mobileDown: 767px;
-    --tabletDown: 1024px;
+  --pink: #ef1bc0;
+  --blue: #4472eb;
+  --mobileDown: 767px;
+  --tabletDown: 1024px;
 }
 
 .container-wide {
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-header > .container-wide {
-    display: flex;
-    justify-content: space-between;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 header {
-    background: linear-gradient(45deg, #ef1bc0, #4472eb);
-    color: white;
-    padding: 50px 25px;
+  background: linear-gradient(45deg, #ef1bc0, #4472eb);
+  color: white;
+  padding: 50px 25px;
 }
+header > .container-wide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.matchweek-text {
+  margin-right: 50px;
+}
+.matchweek-text > p {
+  display: inline-block;
+  letter-spacing: 0.5px;
+  padding-right: 10px;
+  margin: 0;
+}
+.matchweek-text .current-week {
+  font-size: 30px;
+  padding-right: 3px;
+}
+.matchweek-text .slash {
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.matchweek-text .total-weeks {
+  font-size: 30px;
+  opacity: 0.5;
+  padding-left: 3px;
+}
+
 button {
-    background: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
+  background: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
 }
+button:active {
+  scale: 0.95;
+}
+
 h1 {
-    margin: 0;
+  margin: 0 auto 0 0;
 }
+
 table.league-table {
-    width: calc(100% - 20px);
-    border-collapse: collapse;
+  width: calc(100% - 20px);
+  border-collapse: collapse;
 }
+
+/* @media (max-width: 767px) {
+    table {
+        font-size: 12px;
+    }
+} */
 thead {
-    background: #eee;
+  background: #eee;
 }
+
 th {
-    font-size: .9em;
-    color: #333;
-    padding: 5px 0;
+  font-size: 0.9em;
+  color: #333;
+  padding: 5px 0;
 }
+
 th.position,
 th.club,
 td.position,
 td.club {
-    text-align: left;
+  text-align: left;
 }
+
 td {
-    padding: 18px 0;
-    text-align: center;
+  padding: 18px 0;
+  text-align: center;
 }
+
 tr {
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
+
 tbody tr:nth-child(1) {
-    border-color: var(--blue);
+  border-color: var(--blue);
 }
+
 tbody tr:nth-last-child(4) {
-    border-color: red;
-}
-
-td.position {
-    padding-left: 15px;
-    position: relative;
-    cursor: pointer;
-}
-
-.position .previous {
-    display: inline-block;
-    margin-left: 20px;
-}
-.position .previous.no-movement {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #333;
-    vertical-align: middle;
-}
-.position .previous.moved-up {
-    position: relative;
-    top: -3px;
-    border: 5px solid #0ee00e;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-top-color: transparent;
-}
-.position .previous.moved-down {
-    position: relative;
-    top: 3px;
-    border: 5px solid red;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-}
-
-.position:hover .tooltip {
-    display: block;
+  border-color: red;
 }
 
 .tooltip {
-    display: none;
-    position: absolute;
-    top: -25%;
-    right: -25%;
-    font-size: 12px;
-    text-align: center;
-    color: inherit;
-    background: white;
-    border: 1px solid var(--pink);
-    padding: 15px 10px 10px 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.25);
-    white-space: nowrap;
+  display: none;
+  position: absolute;
+  top: -25%;
+  right: -25%;
+  font-size: 12px;
+  text-align: center;
+  color: inherit;
+  background: white;
+  border: 1px solid var(--pink);
+  padding: 15px 10px 10px 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
 }
 
 .tooltip:before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    height: 13px;
-    background: transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  height: 13px;
+  background: transparent;
 }
 
 .tooltip:after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    right: 10px;
-    width: 10px;
-    height: 10px;
-    background: white;
-    rotate: 45deg;
-    border-right: 1px solid var(--pink);
-    border-bottom: 1px solid var(--pink);
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  background: white;
+  rotate: 45deg;
+  border-right: 1px solid var(--pink);
+  border-bottom: 1px solid var(--pink);
 }
 
+/* Table column specific styling */
+/* _Previous */
+.position {
+  padding-left: 15px;
+  position: relative;
+  cursor: help;
+}
+
+.position .current {
+  display: inline-block;
+  width: 15px;
+}
+
+.position .previous {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+}
+
+.position .previous.no-movement {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #333;
+  vertical-align: middle;
+}
+
+.position .previous.moved-up {
+  top: -3px;
+  border: 5px solid #0ee00e;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.position .previous.moved-down {
+  top: 3px;
+  border: 5px solid red;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.tooltip-previous {
+  left: 30px;
+  top: -35px;
+  bottom: auto;
+  right: auto;
+}
+
+.tooltip-previous:after {
+  left: 10px;
+  right: auto;
+}
+
+.tooltip-previous span.prev {
+  font-weight: 900;
+}
+
+.position:hover .tooltip {
+  display: block;
+}
+
+/* _Club */
 .badge {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
-    border-radius: 50%;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  border-radius: 50%;
 }
+
 .clubname {
-    vertical-align: middle;
-    /* font-weight: bold; */
+  vertical-align: middle;
+  /* font-weight: bold; */
 }
+
 .club .short-name {
-    font-weight: bold;
+  font-weight: bold;
 }
+
 .club .badge {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .club > svg {
-    font-size: 1.2em;
-    vertical-align: middle;
-    margin-right: 20px;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-right: 20px;
 }
 
 .points {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 th.gf,
 th.ga,
 th.gdiff {
-    padding: 0 7px;
+  padding: 0 7px;
 }
 
+/* Next Opponent */
 .next {
-    text-align: center;
+  text-align: center;
 }
 
 td.next {
-    position: relative;
+  position: relative;
+  cursor: help;
+}
+td.next:hover .tooltip {
+  display: block;
 }
 
 td.next svg {
-    font-size: .8em;
+  font-size: 0.8em;
 }
 
 td.next .next-opponent {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 td.next .next-opponent:before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid gray;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid gray;
 }
 
+.tooltip-next-opponent {
+  top: auto;
+  bottom: 100%;
+  right: 25%;
+}
+.tooltip-next-opponent .tooltip-content {
+  font-weight: 700;
+}
+
+/* Recent Form */
 td.form {
-    position: relative;
+  position: relative;
 }
 
 .form ul {
-    text-align: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 .form ul li {
-    display: inline-block;
-    padding: 0 5px;
-    cursor: pointer;
-    position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  cursor: help;
+  position: relative;
 }
+
 .form ul li abbr {
-    display: block;
-    width: 15px;
-    height: 15px;
-    font-size: 12px;
-    line-height: 15px;
-    font-weight: 900;
-    text-decoration: none;
-    color: #fff;
-    border-radius: 50%;
-    padding: 5px;
+  display: block;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 900;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px;
 }
+
 .form ul li abbr.win {
-    background: var(--pink);
+  background: var(--pink);
 }
+
 .form ul li abbr.loss {
-    background: var(--blue);
+  background: var(--blue);
 }
+
 .form ul li abbr.draw {
-    background: #333;
+  background: #333;
 }
 
 .form ul li .tooltip {
-    top: -62px;
-    right: 0;
+  top: -62px;
+  right: 0;
 }
 
 .form ul li:hover .tooltip {
-    display: block;
+  display: block;
 }
 
 .form ul li:hover .tooltip .score {
-    font-weight: 900;
-    color: white;
-    background: black;
-    /* background: var(--pink); */
-    /* background: #984CD8; */
-    border-radius: 5px;
-    padding: 5px;
-    margin: 0 10px;
+  font-weight: 900;
+  color: white;
+  background: #333;
+  /* background: var(--pink); */
+  /* background: #984CD8; */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 10px;
 }
 
 .form ul li:hover .tooltip .short-name {
-    font-size: 15px;
-    font-weight: 900;
+  font-size: 15px;
+  font-weight: 900;
 }
 
 .form ul li:hover .tooltip .short-name svg {
-    margin: 0 0 0 10px;
+  margin: 0 0 0 10px;
 }
 
 .form ul li:hover .tooltip .short-name.opponent svg {
-    margin: 0 10px 0 0;
+  margin: 0 10px 0 0;
 }
 
 .form .tooltip-content {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 1025px) {
-    .hidden-md-up {
-        display: none;
-    }
+  .hidden-md-up {
+    display: none;
+  }
 }
-
 @media (max-width: 1024px) {
-    .hidden-sm {
-        display: none;
-    }
+  .hidden-sm {
+    display: none;
+  }
 }
-
 @media (max-width: 767px) {
-    .hidden-xs {
-        display: none;
-    }
+  .hidden-xs {
+    display: none;
+  }
 }

@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function RecentForm({ team, getTeamData, getMatchData }) {
 
     const results = team.results.slice(-5)
     const opponents = team.opponents.slice(-5)
-    const matchesPlayed = team.matchesPlayed.slice(-5)
+    const recentMatches = team.matchesPlayed.slice(-5)
 
     const win = (
         <abbr title="Won" className="win">W</abbr>
@@ -23,19 +22,20 @@ function RecentForm({ team, getTeamData, getMatchData }) {
         <td className="form hidden-xs">
             <ul>
                 {
-                    results.map( (res, index) => {
+                    results.map( (res, i) => {
 
-                        const matchData = getMatchData(matchesPlayed[index])
-                        const opponent = getTeamData(opponents[index])
+                        const matchId = recentMatches[i]
+                        const match = getMatchData(matchId)
+                        const opponent = getTeamData(opponents[i])
                         const outcome = res === 3 ? win : res === 0 ? loss : draw
 
-                        const score = (team.id == matchData.winner)
-                            ? `${matchData.score[0]} - ${matchData.score[1]}`
-                            : `${matchData.score[1]} - ${matchData.score[0]}`
+                        const score = (team.id == match.winner)
+                            ? `${match.score[0]} - ${match.score[1]}`
+                            : `${match.score[1]} - ${match.score[0]}`
 
                         return (
-                            <li>
-                                <div className="tooltip tooltip-previous">
+                            <li key={ matchId }>
+                                <div className="tooltip tooltip-recent-match">
                                     <div className="tooltip-content">
                                         <span className="short-name">
                                             {team.shortName}

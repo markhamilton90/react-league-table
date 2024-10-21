@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 function Position({ played, position, prevPosition }) {
 
@@ -12,7 +11,7 @@ function Position({ played, position, prevPosition }) {
         tooltip = (
             <span className="tooltip tooltip-previous">
                 <span className="tooltip-content">
-                    Previous position <b>{prevPosition + 1}</b>
+                    Previous position <span className="prev">{prevPosition + 1}</span>
                 </span>
             </span>
         )
