@@ -1,4 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tooltip from './Tooltip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NextMatch({ opponent }) {
 
@@ -14,11 +15,7 @@ function NextMatch({ opponent }) {
                 />
             </span>
 
-            <div className="tooltip tooltip-next-opponent">
-                <div className="tooltip-content">
-                    {opponent?.name}
-                </div>
-            </div>
+            <Tooltip content={opponent?.name}/>
         </>
     )
 

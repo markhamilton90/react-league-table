@@ -1,4 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tooltip from './Tooltip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RecentForm({ team, getTeamData, getMatchData }) {
 
@@ -33,30 +34,31 @@ function RecentForm({ team, getTeamData, getMatchData }) {
                             ? `${match.score[0]} - ${match.score[1]}`
                             : `${match.score[1]} - ${match.score[0]}`
 
+                        const content = (
+                            <div className="score-content">
+                                <span className="short-name">
+                                    {team.shortName}
+                                    <FontAwesomeIcon
+                                        icon={team.badge}
+                                        style={{color:team.color}}
+                                    />
+                                </span>
+                                <span className="score">
+                                    {score}
+                                </span>
+                                <span className="short-name opponent">
+                                    <FontAwesomeIcon
+                                        icon={opponent.badge}
+                                        style={{color:opponent.color}}
+                                    />
+                                    {opponent.shortName}
+                                </span>
+                            </div>
+                        )
+
                         return (
                             <li key={ matchId }>
-                                <div className="tooltip tooltip-recent-match">
-                                    <div className="tooltip-content">
-                                        <span className="short-name">
-                                            {team.shortName}
-                                            <FontAwesomeIcon
-                                                icon={team.badge}
-                                                style={{color:team.color}}
-                                            />
-                                        </span>
-                                        <span className="score">
-                                            {score}
-                                        </span>
-                                        <span className="short-name opponent">
-                                            <FontAwesomeIcon
-                                                icon={opponent.badge}
-                                                style={{color:opponent.color}}
-                                            />
-                                            {opponent.shortName}
-                                        </span>
-                                    </div>
-                                </div>
-
+                                <Tooltip content={content} />
                                 {outcome}
                             </li>
                         )

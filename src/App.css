@@ -146,6 +146,11 @@ tbody tr:nth-last-child(4) {
   border-bottom: 1px solid var(--pink);
 }
 
+.tooltip.open-right:after {
+  left: 10px;
+  right: auto;
+}
+
 /* Table column specific styling */
 /* _Previous */
 .position {
@@ -189,19 +194,14 @@ tbody tr:nth-last-child(4) {
   border-bottom-color: transparent;
 }
 
-.tooltip-previous {
+.position .tooltip {
   left: 30px;
   top: -35px;
   bottom: auto;
   right: auto;
 }
 
-.tooltip-previous:after {
-  left: 10px;
-  right: auto;
-}
-
-.tooltip-previous span.prev {
+.position span.prev {
   font-weight: 900;
 }
 
@@ -288,12 +288,12 @@ td.next .next-opponent:before {
   border: 1px solid gray;
 }
 
-.tooltip-next-opponent {
+td.next .tooltip {
   top: auto;
   bottom: 100%;
   right: 25%;
 }
-.tooltip-next-opponent .tooltip-content {
+td.next .tooltip .tooltip-content {
   font-weight: 700;
 }
 

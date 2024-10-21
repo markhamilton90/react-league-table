@@ -1,3 +1,4 @@
+import Tooltip from './Tooltip';
 
 function Position({ played, position, prevPosition }) {
 
@@ -5,17 +6,12 @@ function Position({ played, position, prevPosition }) {
     const movedDown = Number.isInteger(prevPosition) && position > prevPosition
     const previousClass = movedUp ? 'moved-up' : movedDown ? 'moved-down' : 'no-movement'
 
-    let tooltip = ''
-
-    if (played > 0) {
-        tooltip = (
-            <span className="tooltip tooltip-previous">
-                <span className="tooltip-content">
-                    Previous position <span className="prev">{prevPosition + 1}</span>
-                </span>
-            </span>
-        )
-    }
+    const content = (
+        <span>Previous position <span className="prev">{prevPosition + 1}</span></span>
+    )
+    const tooltip = (played > 0)
+        ? <Tooltip content={content} openLeft={false}/>
+        : ''
 
     return (
         <td className="position">
