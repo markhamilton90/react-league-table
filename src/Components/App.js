@@ -5,26 +5,18 @@ import Table from './Table';
 import TeamNumberInput from './TeamNumberInput';
 import teamsData from '../teams.js';
 import { createSchedule, playGames } from '../helpers.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function App() {
 
-    let numberOfTeams = 10
-    let subset = teamsData.slice(0, numberOfTeams)
-
-    // State
-    const [teams, setTeams] = useState(subset)
-    const clubs = teams.map(team => team.id)
-
-    const firstHalf = createSchedule(clubs)
-    const secondHalf = createSchedule(clubs)
-    const fullSchedule = firstHalf.concat(secondHalf)
-
-    const [schedule, setSchedule] = useState(fullSchedule)
+    // Initial state
+    const [numberOfTeams, setNumberOfTeams] = useState(0)
+    const [teams, setTeams] = useState([])
+    const [schedule, setSchedule] = useState([])
     const [matchesPlayed, setMatchesPlayed] = useState([])
     const [currentWeek, setCurrentWeek] = useState(0)
 
-    const totalWeeks = (clubs.length - 1) * 2
+    const clubs = teams.map(team => team.id) || []
+    const totalWeeks = clubs.length ? (clubs.length - 1) * 2 : 0
     const seasonComplete = currentWeek >= totalWeeks
     const nextMatches = schedule[currentWeek]
 
@@ -36,6 +28,19 @@ function App() {
     // Return a single match by id
     function getMatchData(id) {
         return matchesPlayed.find((el, index) => index === id)
+    }
+
+    // Sets the number of teams and related state values
+    function chooseNumberOfTeams(number) {
+        setNumberOfTeams(number)
+        let actualTeams = teamsData.slice(0, number)
+        setTeams(actualTeams)
+
+        const clubs = actualTeams.map(team => team.id)
+        const firstHalf = createSchedule(clubs)
+        const secondHalf = createSchedule(clubs)
+        const fullSchedule = firstHalf.concat(secondHalf)
+        setSchedule(fullSchedule)
     }
 
     function runMatchweek() {
@@ -166,7 +171,7 @@ function App() {
 
     const conditionalMarkup = (numberOfTeams <= 0)
         ? (
-            <TeamNumberInput />
+            <TeamNumberInput chooseNumberOfTeams={chooseNumberOfTeams} />
         )
         : (
             <Table

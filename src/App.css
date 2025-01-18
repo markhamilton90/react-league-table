@@ -1,6 +1,8 @@
 :root {
   --pink: #ef1bc0;
   --blue: #4472eb;
+  --light: white;
+  --dark: #333;
   --mobileDown: 767px;
   --tabletDown: 1024px;
 }
@@ -59,6 +61,13 @@ button {
 button:active {
   scale: 0.95;
 }
+button.light {
+  background: var(--light);
+}
+button.primary {
+  background: var(--blue);
+  color: var(--light);
+}
 
 h1 {
   margin: 0 auto 0 0;
@@ -80,7 +89,7 @@ thead {
 
 th {
   font-size: 0.9em;
-  color: #333;
+  color: var(--dark);
   padding: 5px 0;
 }
 
@@ -174,7 +183,7 @@ tbody tr:nth-last-child(4) {
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: #333;
+  background: var(--dark);
   vertical-align: middle;
 }
 
@@ -338,7 +347,7 @@ td.form {
 }
 
 .form ul li abbr.draw {
-  background: #333;
+  background: var(--dark);
 }
 
 .form ul li .tooltip {
@@ -353,9 +362,7 @@ td.form {
 .form ul li:hover .tooltip .score {
   font-weight: 900;
   color: white;
-  background: #333;
-  /* background: var(--pink); */
-  /* background: #984CD8; */
+  background: var(--dark);
   border-radius: 5px;
   padding: 5px;
   margin: 0 10px;
@@ -393,4 +400,24 @@ td.form {
   .hidden-xs {
     display: none;
   }
+}
+.number-of-teams {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
+.number-of-teams label {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.number-of-teams .number {
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+.number-of-teams input[type=range] {
+  width: 300px;
+  margin-bottom: 25px;
+  cursor: pointer;
 }

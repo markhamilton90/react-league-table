@@ -1,15 +1,27 @@
-function TeamNumberInput() {
+import { useState } from 'react'
+
+function TeamNumberInput({ chooseNumberOfTeams }) {
+
+    const [number, setNumber] = useState(6)
 
     return (
-        <div>
-            <label htmlFor="team-number">Team Number</label>
+        <div className="number-of-teams">
+            <label htmlFor="team-number">Number of Teams:</label>
+            <span className="number">{number}</span>
             <input
-                type="number"
+                type="range"
                 name="team-number"
                 step="2"
                 min="2"
                 max="10"
+                value={number}
+                onInput={e => setNumber(parseInt(e.target.value))}
             />
+            <button
+                className="primary"
+                onClick={() => chooseNumberOfTeams(number)}>
+                Submit
+            </button>
         </div>
     )
 }
