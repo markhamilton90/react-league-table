@@ -2,12 +2,16 @@ import Position from './Position';
 import Club from './Club';
 import NextMatch from './NextMatch';
 import RecentForm from './RecentForm';
-// import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { motion } from 'motion/react'
 
 function Row({ team, allTeams, index, played, nextOpponent, getTeamData, getMatchData }) {
 
     return (
-        <tr>
+        <motion.tr
+            initial={{ opacity: 0, top: "-15px", position: "relative" }}
+            animate={{ opacity: 1, top: "0px", position: "relative" }}
+            layout
+        >
             <Position
                 played={played}
                 position={index}
@@ -46,7 +50,7 @@ function Row({ team, allTeams, index, played, nextOpponent, getTeamData, getMatc
                 getTeamData={getTeamData}
                 getMatchData={getMatchData}
             />
-        </tr>
+        </motion.tr>
     )
 }
 

@@ -1,13 +1,17 @@
-function Tooltip({content, openLeft = true}) {
+import { motion } from 'motion/react'
+
+function Tooltip({content, openLeft = true, variants = false}) {
 
     const direction = openLeft ? 'open-left' : 'open-right'
 
     return (
-        <div className={`tooltip ${direction}`}>
+        <motion.div
+            variants={variants}
+            className={`tooltip ${direction}`}>
             <div className="tooltip-content">
                 {content}
             </div>
-        </div>
+        </motion.div>
     )
 }
 

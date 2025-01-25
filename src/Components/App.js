@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../App.css';
 import Header from './Header';
 import Table from './Table';
-import TeamNumberInput from './TeamNumberInput';
+import TeamNumberModal from './TeamNumberModal';
 import teamsData from '../teams.js';
 import { createSchedule, playGames } from '../helpers.js'
 
@@ -171,7 +171,7 @@ function App() {
 
     const conditionalMarkup = (numberOfTeams <= 0)
         ? (
-            <TeamNumberInput chooseNumberOfTeams={chooseNumberOfTeams} />
+            <TeamNumberModal chooseNumberOfTeams={chooseNumberOfTeams} />
         )
         : (
             <Table

@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 
 function MatchweekText({currentWeek, totalWeeks}) {
     return (

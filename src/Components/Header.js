@@ -1,5 +1,5 @@
 import MatchweekText from './MatchweekText';
-import Simulator from './Simulator';
+import HeaderButton from './HeaderButton';
 
 function Header({handleClick, seasonComplete, currentWeek, totalWeeks}) {
     return (
@@ -10,7 +10,7 @@ function Header({handleClick, seasonComplete, currentWeek, totalWeeks}) {
                     currentWeek={currentWeek}
                     totalWeeks={totalWeeks}
                 />
-                <Simulator
+                <HeaderButton
                     handleClick={handleClick}
                     seasonComplete={seasonComplete}
                 />

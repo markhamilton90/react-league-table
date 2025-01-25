@@ -1,4 +1,6 @@
 import Tooltip from './Tooltip';
+import { motion } from 'motion/react'
+import { tooltipVariants } from '../motion-utilities'
 
 function Position({ played, position, prevPosition }) {
 
@@ -10,16 +12,22 @@ function Position({ played, position, prevPosition }) {
         <span>Previous position <span className="prev">{prevPosition + 1}</span></span>
     )
     const tooltip = (played > 0)
-        ? <Tooltip content={content} openLeft={false}/>
+        ? <Tooltip content={content} openLeft={false} variants={tooltipVariants}/>
         : ''
 
     return (
-        <td className="position">
+        <motion.td
+            className="position"
+            initial="tooltipInitial"
+            animate="tooltipInitial"
+            whileHover="tooltipAnimate">
+
             <span className="current">{position + 1}</span>
-            <span className={`previous ${previousClass}`}></span>
+            <span key={ position } className={`previous ${previousClass}`}></span>
 
             {tooltip}
-        </td>
+
+        </motion.td>
     )
 }
 

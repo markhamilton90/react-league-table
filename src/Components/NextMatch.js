@@ -1,5 +1,7 @@
 import Tooltip from './Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from 'motion/react'
+import { tooltipVariants } from '../motion-utilities'
 
 function NextMatch({ opponent }) {
 
@@ -15,16 +17,23 @@ function NextMatch({ opponent }) {
                 />
             </span>
 
-            <Tooltip content={opponent?.name}/>
+            <Tooltip
+                content={opponent?.name}
+                variants={tooltipVariants}
+            />
         </>
     )
 
     const content = opponent ? opponentBadge : empty
 
     return (
-        <td className="next hidden-sm">
+        <motion.td
+            initial="tooltipInitial"
+            animate="tooltipInitial"
+            whileHover="tooltipAnimate"
+            className="next hidden-sm">
             { content }
-        </td>
+        </motion.td>
     )
 }
 

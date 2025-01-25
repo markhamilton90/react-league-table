@@ -1,5 +1,7 @@
 import Tooltip from './Tooltip'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from 'motion/react'
+import { tooltipVariants } from '../motion-utilities'
 
 function RecentForm({ team, getTeamData, getMatchData }) {
 
@@ -57,10 +59,15 @@ function RecentForm({ team, getTeamData, getMatchData }) {
                         )
 
                         return (
-                            <li key={ matchId }>
-                                <Tooltip content={content} />
+                            <motion.li
+                                key={ matchId }
+                                initial="tooltipInitial"
+                                animate="tooltipInitial"
+                                whileHover="tooltipAnimate"
+                            >
+                                <Tooltip content={content} variants={tooltipVariants} />
                                 {outcome}
-                            </li>
+                            </motion.li>
                         )
                     })
                 }

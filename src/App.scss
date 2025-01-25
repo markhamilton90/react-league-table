@@ -57,10 +57,12 @@ button {
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
+    scale: 1;
+    // transition: .15s ease-out;
     cursor: pointer;
-    &:active {
-        scale: .95;
-    }
+    // &:active {
+    //     scale: .9;
+    // }
     &.light {
         background: var(--light);
     }
@@ -340,10 +342,11 @@ td.form {
 .form ul li .tooltip {
     top: -62px;
     right: 0;
+    display: block;
 }
 
 .form ul li:hover .tooltip {
-    display: block;
+    // display: block;
 }
 
 .form ul li:hover .tooltip .score {
@@ -407,7 +410,6 @@ td.form {
         margin-bottom: 15px;
     }
     input[type="range"] {
-        width: 300px;
         margin-bottom: 25px;
         cursor: pointer;
     }
