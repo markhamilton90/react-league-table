@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
-import { buttonVariants } from '../motion-utilities'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import { buttonVariants, modalVariants } from '../motion-utilities'
 
 function TeamNumberModal({ chooseNumberOfTeams }) {
 
     const [number, setNumber] = useState(6)
 
+    const modalRef = useRef(null)
+
     useEffect(() => {
-        document.getElementById('numberOfTeamsModal').showModal()
+        modalRef.current.showModal()
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 e.preventDefault()
@@ -16,7 +18,13 @@ function TeamNumberModal({ chooseNumberOfTeams }) {
     }, [])
 
     return (
-        <dialog id="numberOfTeamsModal">
+        <motion.dialog
+            ref={modalRef}
+            variants={modalVariants}
+            initial="modalInitial"
+            animate="modalAnimate"
+            exit="modalExit"
+            id="numberOfTeamsModal">
             <div className="number-of-teams">
                 <label htmlFor="team-number">Number of Teams:</label>
                 <span className="number">{number}</span>
@@ -38,7 +46,7 @@ function TeamNumberModal({ chooseNumberOfTeams }) {
                     Submit
                 </motion.button>
             </div>
-        </dialog>
+        </motion.dialog>
     )
 }
 

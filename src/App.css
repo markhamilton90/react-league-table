@@ -396,6 +396,19 @@ td.form {
     display: none;
   }
 }
+dialog {
+  width: 400px;
+  border-color: var(--blue);
+  border-width: 2px;
+  border-radius: 10px;
+  perspective: 500px;
+  perspective-origin: left;
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(0.5px);
+}
+
 .number-of-teams {
   display: flex;
   flex-direction: column;

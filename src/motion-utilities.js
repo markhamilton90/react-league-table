@@ -6,3 +6,24 @@ export const tooltipVariants = {
 export const buttonVariants = {
     buttonTap: { scale: .85 },
 }
+
+export const modalVariants = {
+    modalInitial: {
+        transformOrigin: 'left',
+        transform: 'perspective(500px) rotateY(10deg)',
+        opacity: 0,
+        filter: 'blur(3px)'
+    },
+    modalAnimate: {
+        transformOrigin: 'left',
+        transform: 'perspective(500px)',
+        opacity: 1,
+        filter: 'blur(0px)'
+    },
+    modalExit: {
+        transformOrigin: 'left',
+        transform: 'perspective(500px) rotateY(10deg)',
+        opacity: 0,
+        filter: 'blur(3px)'
+    }
+}

@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import '../App.css';
-import Header from './Header';
-import Table from './Table';
-import TeamNumberModal from './TeamNumberModal';
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import '../App.css'
+import Header from './Header'
+import Table from './Table'
+import TeamNumberModal from './TeamNumberModal'
 import teamsData from '../teams.js';
 import { createSchedule, playGames } from '../helpers.js'
 
@@ -171,7 +172,10 @@ function App() {
 
     const conditionalMarkup = (numberOfTeams <= 0)
         ? (
-            <TeamNumberModal chooseNumberOfTeams={chooseNumberOfTeams} />
+            <TeamNumberModal
+                key="modalKey"
+                chooseNumberOfTeams={chooseNumberOfTeams}
+            />
         )
         : (
             <Table
@@ -191,7 +195,9 @@ function App() {
                 currentWeek={currentWeek}
                 totalWeeks={totalWeeks}
             />
-            { conditionalMarkup }
+            <AnimatePresence mode="wait">
+                { conditionalMarkup }
+            </AnimatePresence>
         </div>
     );
 }
