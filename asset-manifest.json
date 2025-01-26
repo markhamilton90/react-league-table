@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-league-table/static/css/main.0be02192.css",
+    "main.js": "/react-league-table/static/js/main.a3b69154.js",
+    "static/js/453.7c7b0bd2.chunk.js": "/react-league-table/static/js/453.7c7b0bd2.chunk.js",
+    "index.html": "/react-league-table/index.html",
+    "main.0be02192.css.map": "/react-league-table/static/css/main.0be02192.css.map",
+    "main.a3b69154.js.map": "/react-league-table/static/js/main.a3b69154.js.map",
+    "453.7c7b0bd2.chunk.js.map": "/react-league-table/static/js/453.7c7b0bd2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0be02192.css",
+    "static/js/main.a3b69154.js"
+  ]
+}
