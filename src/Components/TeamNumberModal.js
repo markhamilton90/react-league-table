@@ -8,13 +8,19 @@ function TeamNumberModal({ chooseNumberOfTeams }) {
 
     const modalRef = useRef(null)
 
+    function disableEscKey(e) {
+        if (e.key === 'Escape') {
+            e.preventDefault()
+        }
+    }
+
     useEffect(() => {
         modalRef.current.showModal()
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                e.preventDefault()
-            }
-        })
+        document.addEventListener('keydown', disableEscKey)
+
+        return () => {
+            document.removeEventListener('keydown', disableEscKey)
+        }
     }, [])
 
     return (
